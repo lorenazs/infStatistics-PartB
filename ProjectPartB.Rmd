@@ -6,30 +6,33 @@ In this project the data set about the tooth growth in guinea pigs is analyzed.
 
 ### Loading the ToothGrowth data
 ```{r}
-
+ 
  data(ToothGrowth)
+ library(ggplot2)
 ```
 ### Exploratory data analysis
 
-revisar el curso de análisis exploratorio de datos
-
 Basically the data set contains 3 variables and 60 observations about the tooth growth in guinea pigs.
-The variables are  len(the tooth length), supp  (the type of supplement VC or OJ) and dose (the dose in
-milligrams)
+The variables are  len(the tooth length), supp  (the type of supplement VC or OJ) and dose (the dose in milligrams)
 
 ```{r}
 
    head(ToothGrowth)
+   summary(ToothGrowth)
+```
+When observing the len vs the dose variables, it can be observed three well defined groups: 
+those which received 0.5 mg dose, 1mg dose or 2mg dose
+```{r}
+  qplot(dose,len,data=ToothGrowth)
+ 
+```
+Combining the supplement with the previous data, XXXXXX
+```{r}
+   qplot(dose,len,data=ToothGrowth, facets= .~supp)
 ```
 
 ```{r}
-
- summary(ToothGrowth)
-
-```
-Hacer un grafico en ggplot2 para ver el len vs la dosis, segun el supplemento recibido
-```{r}
-  boxplot(ToothGrowth)
+  qplot(dose,len,data=ToothGrowth, color= supp)
 ```
 
 ### Confidence Intervals and hypothesis tests to compare tooth growth by supp and dose
