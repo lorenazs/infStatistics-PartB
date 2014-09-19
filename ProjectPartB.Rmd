@@ -2,7 +2,9 @@ Statistical Inference Project Part B
 ========================================================
 
 This is the second part of the Statistical Inference´s course project.  
-In this project the data set about the tooth growth in guinea pigs is analyzed. 
+In this project the data set about the effect of vitamin C on tooth growth in 10
+Guinea Pigs, at each of three dose levels (0.5mg, 1mg, 2mg) with each of two
+delivery methods (OJ,VC)
 
 ### Loading the ToothGrowth data
 ```{r}
@@ -23,19 +25,34 @@ The variables are  len(the tooth length), supp  (the type of supplement VC or OJ
 When observing the len vs the dose variables, it can be observed three well defined groups: 
 those which received 0.5 mg dose, 1mg dose or 2mg dose
 ```{r}
-  qplot(dose,len,data=ToothGrowth)
- 
-```
-Combining the supplement with the previous data, XXXXXX
-```{r}
-   qplot(dose,len,data=ToothGrowth, facets= .~supp)
-```
-
-```{r}
   qplot(dose,len,data=ToothGrowth, color= supp)
+ 
 ```
 
 ### Confidence Intervals and hypothesis tests to compare tooth growth by supp and dose
+```{r}
+ t.test(ToothGrowth$len ~ ToothGrowth$supp,paired=FALSE,var.equal=TRUE,data=ToothGrowth,conf.level=0.95)
+ 
+ dose05<-ToothGrowth[ToothGrowth$dose==0.5,]
+ 
+ t.test(dose05$len ~ dose05$supp,paired=FALSE,var.equal=TRUE,data=ToothGrowth)
+ 
+ dose1mg<-ToothGrowth[ToothGrowth$dose==1.0,]
+ 
+ t.test(dose1mg$len ~ dose1mg$supp,paired=FALSE,var.equal=TRUE,data=ToothGrowth)
+
+ dose2mg<-ToothGrowth[ToothGrowth$dose==2.0,]
+ 
+ t.test(dose2mg$len ~ dose2mg$supp,paired=FALSE,var.equal=TRUE,data=ToothGrowth)
+ 
+```
+ 
+
  
 ### Conclusions and assumptions needed for your conclusions
  
+ In this case the assumptions are:
+  
+  - Given that all the pigs came from the same population I assume a constant variance
+  - From the description of the data, I assume that the doses were applied to a different
+    set of guinea pigs, therefore the samples are not paired.
