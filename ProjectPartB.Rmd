@@ -30,8 +30,14 @@ those which received 0.5 mg dose, 1mg dose or 2mg dose
 ```
 
 ### Confidence Intervals and hypothesis tests to compare tooth growth by supp and dose
+
+First, analyzing the tooth length vs the supplement 
 ```{r}
  t.test(ToothGrowth$len ~ ToothGrowth$supp,paired=FALSE,var.equal=TRUE,data=ToothGrowth,conf.level=0.95)
+
+```
+
+```{r}
  
  dose05<-ToothGrowth[ToothGrowth$dose==0.5,]
  
@@ -44,7 +50,6 @@ those which received 0.5 mg dose, 1mg dose or 2mg dose
  dose2mg<-ToothGrowth[ToothGrowth$dose==2.0,]
  
  t.test(dose2mg$len ~ dose2mg$supp,paired=FALSE,var.equal=TRUE,data=ToothGrowth)
- 
 ```
  
 
